@@ -33,10 +33,8 @@ export default function CartPage() {
         </div>
       ))}
       <h2 className="text-2xl font-bold mt-8">Total: ${total.toFixed(2)}</h2>
-      <Link href="/checkout">
-        <a className="mt-4 inline-block bg-green-500 text-white px-4 py-2 rounded">
+      <Link href="/checkout" className="mt-4 inline-block bg-green-500 text-white px-4 py-2 rounded">
           Proceed to Checkout
-        </a>
       </Link>
     </main>
   );

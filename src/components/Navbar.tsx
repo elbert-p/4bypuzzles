@@ -11,13 +11,11 @@ export default function Navbar() {
 
   return (
     <nav className="bg-gray-800 p-4 text-white flex justify-between items-center">
-      <Link href="/">
-        <a className="text-xl font-bold">4 By Puzzles</a>
+      <Link href="/" className="text-xl font-bold">
+        4by Puzzles
       </Link>
-      <Link href="/cart">
-        <a className="text-lg">
-          Cart ({cartItemCount})
-        </a>
+      <Link href="/cart" className="text-lg">
+        Cart ({cartItemCount})
       </Link>
     </nav>
   );

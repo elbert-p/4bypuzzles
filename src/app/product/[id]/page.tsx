@@ -2,21 +2,21 @@
 
 'use client';
 
+'use client';
+
+import { useParams } from 'next/navigation';
 import { products, Product } from '../../../data/products';
 import Image from 'next/image';
-import { notFound } from 'next/navigation';
 import { useCart } from '../../../context/CartContext';
 
-interface ProductPageProps {
-  params: { id: string };
-}
+export default function ProductPage() {
+  const { id } = useParams();
+  const { addToCart } = useCart();
 
-export default function ProductPage({ params }: ProductPageProps) {
-    const { addToCart } = useCart();
-    const product: Product | undefined = products.find((p) => p.id === params.id);
+  const product: Product | undefined = products.find((p) => p.id === id);
 
   if (!product) {
-    notFound();
+    return <p>Product not found.</p>;
   }
 
   return (
@@ -34,16 +34,13 @@ export default function ProductPage({ params }: ProductPageProps) {
           <p className="text-2xl text-gray-700 mt-4">${product.price}</p>
           <p className="mt-4">{product.description}</p>
           <button
-        className="mt-4 bg-blue-500 text-white px-4 py-2 rounded"
-        onClick={() => addToCart(product)}
-      >
-        Add to Cart
-      </button>
+            className="mt-4 bg-blue-500 text-white px-4 py-2 rounded"
+            onClick={() => addToCart(product)}
+          >
+            Add to Cart
+          </button>
         </div>
       </div>
     </main>
   );
 }
-
-
-
