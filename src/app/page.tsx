@@ -20,7 +20,7 @@ export default function HomePage() {
                   height={400}
                   className="w-full h-auto object-cover"
                 />
-                <h2 className="text-2xl font-semibold mt-4 text-dark-gray">{product.name}</h2>
+                <h2 className="text-2xl font-semibold mt-2 text-dark-gray">{product.name}</h2>
                 <p className="text-xl text-gray-700">${product.price}</p>
               </div>
             </Link>
