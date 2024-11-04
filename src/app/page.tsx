@@ -1,6 +1,6 @@
 // src/app/page.tsx
 
-import { products } from '../data/products.ts';
+import { products } from '../data/products';
 import Image from 'next/image';
 import Link from 'next/link';
 
