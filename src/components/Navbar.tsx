@@ -10,7 +10,7 @@ export default function Navbar() {
   const cartItemCount = cart.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
-    <nav className="bg-gray-800 p-4 text-white flex justify-between items-center">
+    <nav className="bg-dark-cream p-4 text-black flex justify-between items-center">
       <Link href="/" className="text-xl font-bold">
         4by Puzzles
       </Link>

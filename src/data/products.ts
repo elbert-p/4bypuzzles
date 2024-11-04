@@ -23,6 +23,20 @@ export interface Product {
       description: 'An intermediate puzzle for enthusiasts.',
       image: '/images/puzzle2.jpg',
     },
+    {
+      id: '3',
+      name: 'Puzzle Two',
+      price: 24.99,
+      description: 'An intermediate puzzle for enthusiasts.',
+      image: '/images/puzzle2.jpg',
+    },
+    {
+      id: '4',
+      name: 'Puzzle Two',
+      price: 24.99,
+      description: 'An intermediate puzzle for enthusiasts.',
+      image: '/images/puzzle2.jpg',
+    },
     // Add more products as needed
   ];
   

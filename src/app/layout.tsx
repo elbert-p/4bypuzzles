@@ -10,11 +10,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="en">
       <body>
         <CartProvider>
-          <Navbar />
-          {children}
+          <div className="bg-cream min-h-screen">
+            <Navbar />
+            {children}
+          </div>
         </CartProvider>
       </body>
     </html>
   );
 }
-

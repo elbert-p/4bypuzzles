@@ -2,8 +2,6 @@
 
 'use client';
 
-'use client';
-
 import { useParams } from 'next/navigation';
 import { products, Product } from '../../../data/products';
 import Image from 'next/image';
@@ -27,12 +25,12 @@ export default function ProductPage() {
           alt={product.name}
           width={400}
           height={400}
-          className="w-full md:w-1/2 h-auto"
+            className="w-full md:w-1/2 h-auto object-cover max-h-fit md:max-h-full"
         />
-        <div className="md:ml-8">
-          <h1 className="text-4xl font-bold">{product.name}</h1>
-          <p className="text-2xl text-gray-700 mt-4">${product.price}</p>
-          <p className="mt-4">{product.description}</p>
+        <div className="md:ml-8 mt-4 md:mt-0">
+        <h1 className="text-3xl md:text-4xl font-bold text-dark-gray">{product.name}</h1>
+        <p className="text-lg md:text-2xl text-gray-700 mt-4">${product.price}</p>
+        <p className="mt-4 text-dark-gray">{product.description}</p>
           <button
             className="mt-4 bg-blue-500 text-white px-4 py-2 rounded"
             onClick={() => addToCart(product)}
