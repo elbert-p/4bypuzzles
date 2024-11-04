@@ -27,7 +27,7 @@ export default function ProductPage() {
               alt={product.name}
               width={400}
               height={400}
-              className="object-contain w-full h-auto"
+              className="object-contain w-full h-auto rounded"
             />
           </div>
           <div className="flex flex-col justify-start items-start mt-4 md:ml-8 md:mt-0">

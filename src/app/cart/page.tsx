@@ -11,8 +11,16 @@ export default function CartPage() {
 
   const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
-  if (cart.length === 0) return <p className="p-8 text-dark-gray">Your cart is empty.</p>;
-
+  if (cart.length === 0) {
+    return (
+      <main className="flex flex-col items-center justify-start min-h-screen pt-[25vh]">
+        <h1 className="text-4xl mb-8 text-dark-gray">Your cart is empty</h1>
+        <Link href="/" className="bg-blue-500 text-white px-6 py-3 rounded text-lg">
+          Continue Shopping
+        </Link>
+      </main>
+    );
+  }
   return (
     <main className="p-8">
       <h1 className="text-4xl font-bold text-dark-gray mb-8">Your Cart</h1>
