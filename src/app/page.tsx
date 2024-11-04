@@ -7,7 +7,7 @@ import Link from 'next/link';
 export default function HomePage() {
   return (
     <main className="p-8">
-      <h1 className="text-4xl font-bold mb-8 text-dark-gray">4 By Puzzles</h1>
+      <h1 className="text-4xl font-bold mb-8 text-dark-gray">Puzzles</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {products.map((product) => (
           <div key={product.id} className="rounded overflow-hidden">

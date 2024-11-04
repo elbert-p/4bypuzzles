@@ -12,30 +12,30 @@ export interface Product {
     {
       id: '1',
       name: 'Puzzle One',
-      price: 19.99,
+      price: 9.99,
       description: 'A challenging puzzle for beginners.',
       image: '/images/puzzle1.jpg',
     },
     {
       id: '2',
       name: 'Puzzle Two',
-      price: 24.99,
+      price: 14.99,
       description: 'An intermediate puzzle for enthusiasts.',
       image: '/images/puzzle2.jpg',
     },
     {
       id: '3',
-      name: 'Puzzle Two',
-      price: 24.99,
+      name: 'Puzzle',
+      price: 9.99,
       description: 'An intermediate puzzle for enthusiasts.',
-      image: '/images/puzzle2.jpg',
+      image: '/images/puzzle1.jpg',
     },
     {
       id: '4',
-      name: 'Puzzle Two',
-      price: 24.99,
+      name: 'Puzzle',
+      price: 14.99,
       description: 'An intermediate puzzle for enthusiasts.',
-      image: '/images/puzzle2.jpg',
+      image: '/images/puzzle1.jpg',
     },
     // Add more products as needed
   ];
