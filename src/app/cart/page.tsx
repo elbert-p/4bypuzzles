@@ -13,35 +13,44 @@ export default function CartPage() {
 
   if (cart.length === 0) {
     return (
-      <main className="flex flex-col items-center justify-start min-h-screen pt-[25vh]">
-        <h1 className="text-4xl mb-8 text-dark-gray">Your cart is empty</h1>
-        <Link href="/" className="bg-blue-500 text-white px-6 py-3 rounded text-lg">
+      <main className="flex flex-col items-center justify-start min-h-screen pt-[20vh]">
+        <h1 className="text-3xl md:text-4xl mb-8 text-dark-gray">Your cart is empty</h1>
+        <Link href="/" className="bg-blue-500 text-white px-6 py-3 rounded text-base md:text-lg">
           Continue Shopping
         </Link>
       </main>
     );
   }
+
   return (
     <main className="p-8">
-      <h1 className="text-4xl font-bold text-dark-gray mb-8">Your Cart</h1>
+      <h1 className="text-3xl md:text-4xl font-bold text-dark-gray mb-8">Your Cart</h1>
       {cart.map((item) => (
-        <div key={item.id} className="flex items-center mb-4">
-          <Image src={item.image} alt={item.name} width={100} height={100} />
-          <div className="ml-4 flex-1 text-dark-gray">
-            <h2 className="text-2xl">{item.name}</h2>
+        <div key={item.id} className="flex items-center mb-4 flex-nowrap md:flex-wrap">
+          <Image
+            src={item.image}
+            alt={item.name}
+            width={150}
+            height={150}
+            className="w-[100px] h-[100px] md:w-[150px] md:h-[150px]"
+          />
+          <div className="ml-4 flex-1 text-dark-gray text-lg md:text-xl">
+            <h2 className="text-xl md:text-2xl">{item.name}</h2>
             <p>${item.price} x {item.quantity}</p>
             <p>Total: ${item.price * item.quantity}</p>
           </div>
           <button
-            className="bg-red-500 text-white px-4 py-2 rounded"
+            className="bg-red-500 text-white px-4 py-2 rounded text-sm md:text-base mt-0 md:mt-2"
             onClick={() => removeFromCart(item.id)}>
             Remove
           </button>
         </div>
       ))}
-      <h2 className="text-2xl font-bold mt-8 text-dark-gray">Total: ${total.toFixed(2)}</h2>
-      <Link href="/checkout" className="mt-4 inline-block bg-green-500 text-white px-4 py-2 rounded">
-          Proceed to Checkout
+      <h2 className="text-xl md:text-2xl font-bold mt-8 text-dark-gray">Total: ${total.toFixed(2)}</h2>
+      <Link
+        href="/checkout"
+        className="mt-4 inline-block bg-green-500 text-white px-4 py-2 rounded text-base md:text-lg">
+        Proceed to Checkout
       </Link>
     </main>
   );

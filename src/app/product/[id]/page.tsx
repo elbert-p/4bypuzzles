@@ -34,14 +34,13 @@ export default function ProductPage() {
             <h1 className="text-3xl md:text-4xl font-bold text-dark-gray">
               {product.name}
             </h1>
-            <p className="text-lg md:text-2xl text-gray-700 mt-4">
+            <p className="text-xl md:text-2xl text-gray-700 mt-4">
               ${product.price}
             </p>
-            <p className="mt-4 text-dark-gray">{product.description}</p>
+            <p className="mt-2 md:mt-4 text-dark-gray text-base md:text-lg">{product.description}</p>
             <button
-              className="mt-4 bg-blue-500 text-white px-4 py-2 rounded"
-              onClick={() => addToCart(product)}
-            >
+              className="mt-2 md:mt-4 bg-blue-500 text-white text-lg px-4 py-2 rounded"
+              onClick={() => addToCart(product)}>
               Add to Cart
             </button>
           </div>

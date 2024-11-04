@@ -10,7 +10,7 @@ export default function CheckoutPage() {
   const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   return (
-    <main className="p-8">
+    <main className="p-8 text-dark-gray">
       <h1 className="text-4xl font-bold mb-8">Checkout</h1>
       <p>Total Amount: ${total.toFixed(2)}</p>
       <p>Payment processing will be implemented here.</p>
