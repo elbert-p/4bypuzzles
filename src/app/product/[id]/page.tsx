@@ -31,7 +31,7 @@ export default function ProductPage() {
             />
           </div>
           <div className="flex flex-col justify-start items-start mt-4 md:ml-8 md:mt-0">
-            <h1 className="text-3xl md:text-4xl font-bold text-dark-gray">
+            <h1 className="text-3xl md:text-4xl text-dark-gray">
               {product.name}
             </h1>
             <p className="text-xl md:text-2xl text-gray-700 mt-4">

@@ -11,9 +11,9 @@ export interface Product {
   export const products: Product[] = [
     {
       id: '1',
-      name: 'Puzzle One',
+      name: 'Nine piece classic',
       price: 9.99,
-      description: 'A challenging puzzle for beginners.',
+      description: 'A simple looking puzzle with a creative solution.',
       image: '/images/puzzle1.jpg',
     },
     {

@@ -12,7 +12,7 @@ export default function Navbar() {
   return (
     <nav className="bg-dark-cream p-4 text-black flex justify-between items-center">
       <Link href="/" className="text-xl font-bold">
-        4by Puzzles
+        4byPuzzles
       </Link>
       <Link href="/cart" className="text-lg">
         Cart ({cartItemCount})
