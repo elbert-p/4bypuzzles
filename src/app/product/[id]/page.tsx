@@ -9,28 +9,33 @@ import Image from 'next/image';
 import { useCart } from '../../../context/CartContext';
 import { useState } from 'react';
 import AddToCartPopup from '../../../components/AddToCartPopup';
+import { CartItem } from  '../../../context/CartContext'
 
 export default function ProductPage() {
   const { id } = useParams();
   const searchParams = useSearchParams();
   const { addToCart } = useCart();
-  const [showPopup, setShowPopup] = useState(false);
-  const [addedItem, setAddedItem] = useState<any>(null);
 
   const product: Product | undefined = products.find((p) => p.id === id);
+
+  const [showPopup, setShowPopup] = useState(false);
+  const [addedItem, setAddedItem] = useState<CartItem | null>(null);
+  
+  const materialParam = product
+  ? searchParams.get('material')
+  : null;
+  const defaultMaterial: Material = product
+  ? product.materials.find((m) => m.name === materialParam) ||
+    product.materials.find((m) => m.name === 'Wood') ||
+    product.materials[0]
+  : ({} as Material); // Fallback to an empty object or a default Material
+
+  const [selectedMaterial, setSelectedMaterial] = useState<Material>(defaultMaterial);
+  const [mainImage, setMainImage] = useState<string>(defaultMaterial.image);
 
   if (!product) {
     return <p>Product not found.</p>;
   }
-
-  const materialParam = searchParams.get('material');
-  const defaultMaterial =
-    product.materials.find((m) => m.name === materialParam) ||
-    product.materials.find((m) => m.name === 'Wood') ||
-    product.materials[0];
-
-  const [selectedMaterial, setSelectedMaterial] = useState<Material>(defaultMaterial);
-  const [mainImage, setMainImage] = useState<string>(defaultMaterial.image);
 
   const handleMaterialSelect = (material: Material) => {
     setSelectedMaterial(material);
@@ -95,7 +100,7 @@ export default function ProductPage() {
           </div>
         </div>
       </main>
-      {showPopup && <AddToCartPopup item={addedItem} onClose={() => setShowPopup(false)} />}
+      {showPopup && addedItem && <AddToCartPopup item={addedItem} onClose={() => setShowPopup(false)} />}
     </div>
   );
 }
