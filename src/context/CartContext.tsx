@@ -3,16 +3,17 @@
 'use client';
 
 import { createContext, useState, ReactNode, useContext } from 'react';
-import { Product } from '../data/products';
+import { Product, Material } from '../data/products';
 
-interface CartItem extends Product {
+export interface CartItem extends Product {
   quantity: number;
+  selectedMaterial: Material;
 }
 
 interface CartContextProps {
   cart: CartItem[];
-  addToCart: (product: Product) => void;
-  removeFromCart: (id: string) => void;
+  addToCart: (product: Product, material: Material) => void;
+  removeFromCart: (id: string, materialName: string) => void;
 }
 
 const CartContext = createContext<CartContextProps | undefined>(undefined);
@@ -32,21 +33,29 @@ interface CartProviderProps {
 export const CartProvider = ({ children }: CartProviderProps) => {
   const [cart, setCart] = useState<CartItem[]>([]);
 
-  const addToCart = (product: Product) => {
+  const addToCart = (product: Product, material: Material) => {
     setCart((prevCart) => {
-      const existingItem = prevCart.find((item) => item.id === product.id);
+      const existingItem = prevCart.find(
+        (item) => item.id === product.id && item.selectedMaterial.name === material.name
+      );
       if (existingItem) {
         return prevCart.map((item) =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+          item.id === product.id && item.selectedMaterial.name === material.name
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
         );
       } else {
-        return [...prevCart, { ...product, quantity: 1 }];
+        return [...prevCart, { ...product, quantity: 1, selectedMaterial: material }];
       }
     });
   };
 
-  const removeFromCart = (id: string) => {
-    setCart((prevCart) => prevCart.filter((item) => item.id !== id));
+  const removeFromCart = (id: string, materialName: string) => {
+    setCart((prevCart) =>
+      prevCart.filter(
+        (item) => !(item.id === id && item.selectedMaterial.name === materialName)
+      )
+    );
   };
 
   return (

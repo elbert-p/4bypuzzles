@@ -13,6 +13,10 @@ const config: Config = {
         'dark-cream': '#ECE1C6',
         'dark-gray': '#333333',
       },
+      scale: {
+        '98': '0.98',
+        '102': '1.02',
+      },
     },
   },
   plugins: [],
