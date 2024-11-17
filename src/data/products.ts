@@ -1,8 +1,13 @@
 // src/data/products.ts
 
+export interface Color {
+  name: string;
+  images: string[]; // Array of image paths
+}
+
 export interface Material {
   name: string;
-  image: string;
+  colors: Color[];
 }
 
 export interface Product {
@@ -21,23 +26,49 @@ export const products: Product[] = [
     price: 9.99,
     description: 'A simple looking puzzle with a creative solution.',
     materials: [
-      { name: 'Wood', image: '/images/puzzle1.jpg' },
-      { name: 'Acrylic', image: '/images/puzzle2.jpg' },
-      { name: 'MDF', image: '/images/puzzle1.jpg' },
+      {
+        name: 'MDF',
+        colors: [
+          {
+            name: 'Brown',
+            images: ['/images/puzzle1/MDF/classic/1.jpg',
+              '/images/puzzle1/MDF/classic/2.jpg',
+              '/images/puzzle1/MDF/classic/3.jpg',
+              '/images/puzzle1/MDF/classic/4.jpg',
+              '/images/puzzle1/MDF/classic/5.jpg',
+              '/images/puzzle1/MDF/classic/6.jpg',
+            ],
+          },
+        ],
+      },
+      {
+        name: 'Acrylic',
+        colors: [
+          {
+            name: 'Classic',
+            images: ['/images/puzzle1/acrylic/classic/1.jpg',
+              '/images/puzzle1/acrylic/classic/2.jpg',
+              '/images/puzzle1/acrylic/classic/3.jpg',
+              '/images/puzzle1/acrylic/classic/4.jpg',
+              '/images/puzzle1/acrylic/classic/5.jpg',
+              '/images/puzzle1/acrylic/classic/6.jpg',
+              '/images/puzzle1/acrylic/classic/7.jpg'
+            ],
+          },
+          {
+            name: 'Charcoal',
+            images: ['/images/puzzle1/acrylic/charcoal/1.jpg',
+              '/images/puzzle1/acrylic/charcoal/2.jpg',
+              '/images/puzzle1/acrylic/charcoal/3.jpg',
+              '/images/puzzle1/acrylic/charcoal/4.jpg',
+              '/images/puzzle1/acrylic/charcoal/5.jpg',
+              '/images/puzzle1/acrylic/charcoal/6.jpg',
+            ],
+          },
+        ],
+      },
     ],
     additionalDetails: 'Handcrafted with precision and attention to detail.',
-  },
-  {
-    id: '2',
-    name: 'Puzzle Two',
-    price: 14.99,
-    description: 'An intermediate puzzle for enthusiasts.',
-    materials: [
-      { name: 'Wood', image: '/images/puzzle2.jpg'},
-      { name: 'Acrylic', image: '/images/puzzle1.jpg' },// /images/puzzle2_acrylic.jpg
-      { name: 'MDF', image: '/images/puzzle2.jpg' }, // /images/puzzle2_mdf.jpg
-    ],
-    additionalDetails: 'Challenging yet satisfying to solve.',
   },
   // Add more products as needed
 ];

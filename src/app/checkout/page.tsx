@@ -15,11 +15,11 @@ export default function CheckoutPage() {
       <h1 className="text-4xl font-bold mb-8">Checkout</h1>
       {cart.map((item) => (
         <div
-          key={`${item.id}-${item.selectedMaterial.name}`}
+          key={`${item.id}-${item.selectedMaterial.name}-${item.selectedColor.name}`}
           className="flex items-center mb-4 flex-nowrap md:flex-wrap"
         >
           <Image
-            src={item.selectedMaterial.image}
+            src={item.selectedColor.images[0]}
             alt={item.name}
             width={150}
             height={150}
@@ -28,6 +28,7 @@ export default function CheckoutPage() {
           <div className="ml-4 flex-1 text-dark-gray text-lg md:text-xl">
             <h2 className="text-xl md:text-2xl">{item.name}</h2>
             <p>Material: {item.selectedMaterial.name}</p>
+            <p>Color: {item.selectedColor.name}</p>
             <p>
               ${item.price} x {item.quantity}
             </p>

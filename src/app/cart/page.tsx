@@ -1,74 +1,81 @@
-// src/app/cart/page.tsx
+// src/app/page.tsx
 
 'use client';
 
-import { useCart } from '../../context/CartContext';
+import { products, Product, Material, Color } from '../../data/products';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 
-export default function CartPage() {
-  const { cart, removeFromCart } = useCart();
+export default function HomePage() {
+  return (
+    <main className="p-8 text-dark-gray">
+      <h1 className="text-4xl mb-8">Puzzles</h1>
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        {products.map((product: Product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
+    </main>
+  );
+}
 
-  const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+function ProductCard({ product }: { product: Product }) {
+  const defaultMaterial = product.materials[0];
+  const defaultColor = defaultMaterial.colors[0];
+  const [mainImage, setMainImage] = useState<string>(defaultColor.images[0]);
+  const [selectedMaterial, setSelectedMaterial] = useState<Material>(defaultMaterial);
+  const [selectedColor, setSelectedColor] = useState<Color>(defaultColor);
 
-  if (cart.length === 0) {
-    return (
-      <main className="flex flex-col items-center justify-start min-h-screen pt-[20vh]">
-        <h1 className="text-3xl md:text-4xl mb-8 text-dark-gray">
-          Your cart is empty
-        </h1>
-        <Link
-          href="/"
-          className="bg-blue-500 text-white px-6 py-3 rounded text-base md:text-lg transform transition duration-300 hover:scale-102 active:scale-98"
-        >
-          Continue Shopping
-        </Link>
-      </main>
-    );
-  }
+  const handleMaterialHover = (material: Material) => {
+    const materialDefaultColor = material.colors[0];
+    setMainImage(materialDefaultColor.images[0]);
+    setSelectedMaterial(material);
+    setSelectedColor(materialDefaultColor);
+  };
+
+  const handleMaterialLeave = () => {
+    // Keep the last hovered material as the main image
+  };
 
   return (
-    <main className="p-8">
-      <h1 className="text-3xl md:text-4xl font-bold text-dark-gray mb-8">
-        Your Cart
-      </h1>
-      {cart.map((item) => (
-        <div
-          key={`${item.id}-${item.selectedMaterial.name}`}
-          className="flex items-center mb-4 flex-nowrap md:flex-wrap"
-        >
-          <Image
-            src={item.selectedMaterial.image}
-            alt={item.name}
-            width={150}
-            height={150}
-            className="w-[100px] h-[100px] md:w-[150px] md:h-[150px]"
-          />
-          <div className="ml-4 flex-1 text-dark-gray text-lg md:text-xl">
-            <h2 className="text-xl md:text-2xl">{item.name}</h2>
-            <p>Material: {item.selectedMaterial.name}</p>
-            <p>
-              ${item.price} x {item.quantity}
-            </p>
-            <p>Total: ${(item.price * item.quantity).toFixed(2)}</p>
-          </div>
-          <button
-            className="bg-red-500 text-white px-4 py-2 rounded text-sm md:text-base mt-0 md:mt-2 transform transition duration-300 hover:scale-102 active:scale-98"
-            onClick={() => removeFromCart(item.id, item.selectedMaterial.name)}
-          >
-            Remove
-          </button>
-        </div>
-      ))}
-      <h2 className="text-xl md:text-2xl font-bold mt-8 text-dark-gray">
-        Total: ${total.toFixed(2)}
-      </h2>
+    <div>
       <Link
-        href="/checkout"
-        className="mt-4 inline-block bg-green-500 text-white px-4 py-2 rounded text-base md:text-lg transform transition duration-300 hover:scale-102 active:scale-98"
+        href={{
+          pathname: `/product/${product.id}`,
+          query: { material: selectedMaterial.name, color: selectedColor.name },
+        }}
       >
-        Proceed to Checkout
+        <div className="cursor-pointer">
+          <div className="rounded overflow-hidden relative">
+            <Image
+              src={mainImage}
+              alt={product.name}
+              width={400}
+              height={400}
+              className="w-full h-auto object-cover transform transition duration-300 hover:scale-[1.02]"
+            />
+            <div className="absolute bottom-0 left-0 flex space-x-2 p-2">
+              {product.materials.map((material: Material) => (
+                <Image
+                  key={material.name}
+                  src={material.colors[0].images[0]}
+                  alt={material.name}
+                  width={60}
+                  height={60}
+                  className={`object-cover w-12 h-12 rounded cursor-pointer border-2 ${
+                    selectedMaterial.name === material.name ? 'border-black' : 'border-transparent'
+                  }`}
+                  onMouseEnter={() => handleMaterialHover(material)}
+                  onMouseLeave={handleMaterialLeave}
+                />
+              ))}
+            </div>
+          </div>
+          <h2 className="text-2xl mt-2">{product.name}</h2>
+          <p className="text-xl text-gray-700">${product.price}</p>
+        </div>
       </Link>
-    </main>
+    </div>
   );
 }

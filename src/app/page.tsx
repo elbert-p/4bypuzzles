@@ -2,7 +2,7 @@
 
 'use client';
 
-import { products, Product, Material } from '../data/products';
+import { products, Product, Material, Color } from '../data/products';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -21,13 +21,17 @@ export default function HomePage() {
 }
 
 function ProductCard({ product }: { product: Product }) {
-  const woodMaterial = product.materials.find((m) => m.name === 'Wood') || product.materials[0];
-  const [mainImage, setMainImage] = useState<string>(woodMaterial.image);
-  const [selectedMaterial, setSelectedMaterial] = useState<Material>(woodMaterial);
+  const defaultMaterial = product.materials[0];
+  const defaultColor = defaultMaterial.colors[0];
+  const [mainImage, setMainImage] = useState<string>(defaultColor.images[0]);
+  const [selectedMaterial, setSelectedMaterial] = useState<Material>(defaultMaterial);
+  const [selectedColor, setSelectedColor] = useState<Color>(defaultColor);
 
   const handleMaterialHover = (material: Material) => {
-    setMainImage(material.image);
+    const materialDefaultColor = material.colors[0];
+    setMainImage(materialDefaultColor.images[0]);
     setSelectedMaterial(material);
+    setSelectedColor(materialDefaultColor);
   };
 
   const handleMaterialLeave = () => {
@@ -39,7 +43,7 @@ function ProductCard({ product }: { product: Product }) {
       <Link
         href={{
           pathname: `/product/${product.id}`,
-          query: { material: selectedMaterial.name },
+          query: { material: selectedMaterial.name, color: selectedColor.name },
         }}
       >
         <div className="cursor-pointer">
@@ -55,7 +59,7 @@ function ProductCard({ product }: { product: Product }) {
               {product.materials.map((material: Material) => (
                 <Image
                   key={material.name}
-                  src={material.image}
+                  src={material.colors[0].images[0]}
                   alt={material.name}
                   width={60}
                   height={60}

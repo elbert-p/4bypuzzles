@@ -21,7 +21,7 @@ export default function AddToCartPopup({ item, onClose }: AddToCartPopupProps) {
       const timer = setTimeout(() => {
         setVisible(false);
         onClose();
-      }, 10000); // Increased the timeout to 15 seconds
+      }, 10000);
       return () => clearTimeout(timer);
     }
   }, [visible, hovering, onClose]);
@@ -44,11 +44,11 @@ export default function AddToCartPopup({ item, onClose }: AddToCartPopupProps) {
         ×
       </button>
       <h3 className="text-lg mb-2">
-        <span className="text-green-500">✔️</span> Item added to your cart 
+        <span className="text-green-500">✔️</span> Item added to your cart
       </h3>
       <div className="flex items-center">
         <Image
-          src={item.selectedMaterial.image}
+          src={item.selectedColor.images[0]}
           alt={item.name}
           width={50}
           height={50}
@@ -57,6 +57,7 @@ export default function AddToCartPopup({ item, onClose }: AddToCartPopupProps) {
         <div className="ml-4">
           <h4 className="text-lg font-semibold">{item.name}</h4>
           <p className="text-sm">Material: {item.selectedMaterial.name}</p>
+          <p className="text-sm">Color: {item.selectedColor.name}</p>
         </div>
       </div>
       <div className="mt-4 flex flex-col">
