@@ -102,7 +102,6 @@ export const products: Product[] = [
               '/images/puzzle2/acrylic/classic/4.jpg',
               '/images/puzzle2/acrylic/classic/5.jpg',
               '/images/puzzle2/acrylic/classic/6.jpg',
-              '/images/puzzle2/acrylic/classic/7.jpg'
             ],
           },
         ],
