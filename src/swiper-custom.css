@@ -17,11 +17,11 @@
 
 /* Position arrows closer to the image edge */
 .swiper-button-next {
-  right: 8px;
+  right: 10px;
 }
 
 .swiper-button-prev {
-  left: 8px;
+  left: 10px;
 }
 
 /* Customize Swiper Pagination Dots */
