@@ -9,6 +9,16 @@ import { useCart } from '../../../context/CartContext';
 import { useState } from 'react';
 import AddToCartPopup from '../../../components/AddToCartPopup';
 import { CartItem } from '../../../context/CartContext';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Navigation } from 'swiper/modules'; // Adjust based on Swiper version
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
+// Import Custom Swiper Styles
+import '../../../swiper-custom.css'; // Adjust the path based on your project structure
 
 export default function ProductPage() {
   const { id } = useParams();
@@ -77,8 +87,8 @@ export default function ProductPage() {
     <div className="flex flex-col min-h-[calc(100vh-4rem)] overflow-hidden p-8 text-dark-gray">
       <main className="flex flex-grow items-top justify-center w-full max-w-screen-lg">
         <div className="flex flex-col md:flex-row w-full">
-          {/* Left Column: Thumbnails */}
-          <div className="flex flex-row md:flex-col items-start md:items-center mr-4">
+          {/* Left Column: Thumbnails (Hidden on small screens) */}
+          <div className="hidden md:flex flex-col items-start md:items-center mr-4">
             {selectedColor.images.map((image, index) => (
               <Image
                 key={index}
@@ -86,10 +96,10 @@ export default function ProductPage() {
                 alt={`${selectedColor.name} ${index + 1}`}
                 width={80}
                 height={80}
-                className={`object-cover w-20 h-20 rounded cursor-pointer border-2 mb-2 ${
+                className={`object-cover w-20 h-20 rounded cursor-pointer border-2 mb-2 transition duration-200 ${
                   selectedImageIndex === index ? 'border-black' : 'border-transparent'
                 }`}
-                onClick={() => {
+                onMouseEnter={() => {
                   setMainImage(image);
                   setSelectedImageIndex(index);
                 }}
@@ -97,21 +107,54 @@ export default function ProductPage() {
             ))}
           </div>
 
-          {/* Main Image */}
+          {/* Main Image / Swipeable Gallery */}
           <div className="md:flex-1 flex items-start justify-start pb-0 md:pb-8 md:pr-0 relative">
-            {mainImage ? (
-              <Image
-                src={mainImage}
-                alt={product.name}
-                width={400}
-                height={400}
-                className="object-contain w-full h-auto rounded"
-              />
-            ) : (
-              <div className="w-full h-96 flex items-center justify-center bg-gray-200">
-                <p>No Image Available</p>
-              </div>
-            )}
+            {/* Desktop View */}
+            <div className="hidden md:block w-full h-auto rounded">
+              {mainImage ? (
+                <Image
+                  src={mainImage}
+                  alt={product.name}
+                  width={400}
+                  height={400}
+                  className="object-contain w-full h-auto rounded"
+                />
+              ) : (
+                <div className="w-full h-96 flex items-center justify-center bg-gray-200">
+                  <p>No Image Available</p>
+                </div>
+              )}
+            </div>
+
+            {/* Mobile View: Swiper Gallery */}
+            <div className="block md:hidden w-full h-auto rounded">
+              {selectedColor.images.length > 0 ? (
+                <Swiper
+                  modules={[Pagination, Navigation]}
+                  spaceBetween={10}
+                  slidesPerView={1}
+                  pagination={{ clickable: true }}
+                  navigation
+                  className="mySwiper"
+                >
+                  {selectedColor.images.map((image, index) => (
+                    <SwiperSlide key={index}>
+                      <Image
+                        src={image}
+                        alt={`${selectedColor.name} ${index + 1}`}
+                        width={400}
+                        height={400}
+                        className="object-contain w-full h-auto rounded"
+                      />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              ) : (
+                <div className="w-full h-96 flex items-center justify-center bg-gray-200">
+                  <p>No Image Available</p>
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Right Column: Product Details */}
@@ -130,15 +173,15 @@ export default function ProductPage() {
                       alt={material.name}
                       width={80}
                       height={80}
-                      className={`object-cover w-20 h-20 rounded cursor-pointer border-2 ${
+                      className={`object-cover w-20 h-20 rounded cursor-pointer border-2 transition duration-200 ${
                         selectedMaterial.name === material.name ? 'border-black' : 'border-transparent'
                       }`}
-                      onClick={() => handleMaterialSelect(material)}
+                      onMouseEnter={() => handleMaterialSelect(material)}
                     />
                   ))}
                 </div>
                 <div className="mt-2">
-                  <span className="text-lg font-semibold">Selected Material: </span>
+                  <span className="text-lg font-semibold">Material: </span>
                   <span className="text-lg">{selectedMaterial.name}</span>
                 </div>
               </>
@@ -146,7 +189,7 @@ export default function ProductPage() {
             {/* Color Selector */}
             {selectedMaterial.colors.length > 1 && (
               <div className="mt-4">
-                <span className="text-lg">Select Color: </span>
+                {/* Removed the "Select Color:" span */}
                 <div className="mt-2 flex space-x-2">
                   {selectedMaterial.colors.map((color: Color) => (
                     <Image
@@ -155,19 +198,17 @@ export default function ProductPage() {
                       alt={color.name}
                       width={80}
                       height={80}
-                      className={`object-cover w-16 h-16 rounded cursor-pointer border-2 ${
+                      className={`object-cover w-16 h-16 rounded cursor-pointer border-2 transition duration-200 ${
                         selectedColor.name === color.name ? 'border-black' : 'border-transparent'
                       }`}
-                      onClick={() => handleColorSelect(color)}
+                      onMouseEnter={() => handleColorSelect(color)}
                     />
                   ))}
                 </div>
-              </div>
-            )}
-            {selectedColor.name && (
-              <div className="mt-2">
-                <span className="text-lg font-semibold">Selected Color: </span>
-                <span className="text-lg">{selectedColor.name}</span>
+                <div className="mt-2">
+                  <span className="text-lg font-semibold">Color: </span>
+                  <span className="text-lg">{selectedColor.name}</span>
+                </div>
               </div>
             )}
             <button

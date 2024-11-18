@@ -1,0 +1,49 @@
+/* swiper-custom.css */
+
+/* Customize Swiper Navigation Arrows */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #000; /* Black color */
+  width: 20px;  /* Smaller size */
+  height: 20px;
+  top: 50%;
+  transform: translateY(50%);
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 20px; /* Smaller arrow icons */
+}
+
+/* Position arrows closer to the image edge */
+.swiper-button-next {
+  right: 8px;
+}
+
+.swiper-button-prev {
+  left: 8px;
+}
+
+/* Customize Swiper Pagination Dots */
+.swiper-pagination-bullet {
+  background: #000; /* Black dots */
+  opacity: 0.7;
+  width: 6px;
+  height: 6px;
+  margin: 0 4px;
+}
+
+.swiper-pagination-bullet-active {
+  background: #000; /* Active dot also black */
+  opacity: 1;
+}
+
+/* Optional: Adjust the position of pagination dots */
+.swiper-pagination {
+  bottom: 0px !important; 
+}
+
+/* Ensure that Swiper container has relative positioning */
+.mySwiper {
+  position: relative;
+}

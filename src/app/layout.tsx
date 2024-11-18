@@ -10,7 +10,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="en">
       <body className="text-dark-gray">
         <CartProvider>
-          <div className="bg-cream min-h-screen">
+          <div className="bg-white min-h-screen">
             <Navbar />
             {children}
           </div>
