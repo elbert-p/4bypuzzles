@@ -10,7 +10,13 @@ import { useState } from 'react';
 import AddToCartPopup from '../../../components/AddToCartPopup';
 import { CartItem } from '../../../context/CartContext';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation } from 'swiper/modules'; // Adjust based on Swiper version
+
+// Adjust the import based on your Swiper version
+// For Swiper v9 and above:
+import { Pagination, Navigation } from 'swiper/modules';
+
+// For Swiper v8 and below, uncomment the following line and comment out the above line:
+// import { Pagination, Navigation } from 'swiper';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -176,7 +182,7 @@ export default function ProductPage() {
                       className={`object-cover w-20 h-20 rounded cursor-pointer border-2 transition duration-200 ${
                         selectedMaterial.name === material.name ? 'border-black' : 'border-transparent'
                       }`}
-                      onMouseEnter={() => handleMaterialSelect(material)}
+                      onClick={() => handleMaterialSelect(material)}
                     />
                   ))}
                 </div>
@@ -190,7 +196,7 @@ export default function ProductPage() {
             {selectedMaterial.colors.length > 1 && (
               <div className="mt-4">
                 {/* Removed the "Select Color:" span */}
-                <div className="mt-2 flex space-x-2">
+                <div className="flex space-x-2">
                   {selectedMaterial.colors.map((color: Color) => (
                     <Image
                       key={color.name}
@@ -201,7 +207,7 @@ export default function ProductPage() {
                       className={`object-cover w-16 h-16 rounded cursor-pointer border-2 transition duration-200 ${
                         selectedColor.name === color.name ? 'border-black' : 'border-transparent'
                       }`}
-                      onMouseEnter={() => handleColorSelect(color)}
+                      onClick={() => handleColorSelect(color)}
                     />
                   ))}
                 </div>
