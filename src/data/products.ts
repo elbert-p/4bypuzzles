@@ -27,23 +27,18 @@ export const products: Product[] = [
     description: 'A simple looking puzzle with a creative solution.',
     materials: [
       {
-        name: 'MDF',
-        colors: [
-          {
-            name: 'Brown',
-            images: ['/images/puzzle1/MDF/classic/2.jpg',
-              '/images/puzzle1/MDF/classic/1.jpg',
-              '/images/puzzle1/MDF/classic/3.jpg',
-              '/images/puzzle1/MDF/classic/4.jpg',
-              '/images/puzzle1/MDF/classic/5.jpg',
-              '/images/puzzle1/MDF/classic/6.jpg',
-            ],
-          },
-        ],
-      },
-      {
         name: 'Acrylic',
         colors: [
+          {
+            name: 'Candy Cane',
+            images: ['/images/puzzle1/acrylic/candycane/1.jpg',
+              '/images/puzzle1/acrylic/candycane/2.jpg',
+              '/images/puzzle1/acrylic/candycane/3.jpg',
+              '/images/puzzle1/acrylic/candycane/4.jpg',
+              '/images/puzzle1/acrylic/candycane/5.jpg',
+              '/images/puzzle1/acrylic/candycane/6.jpg'
+            ],
+          },
           {
             name: 'Classic',
             images: ['/images/puzzle1/acrylic/classic/2.jpg',
@@ -53,6 +48,15 @@ export const products: Product[] = [
               '/images/puzzle1/acrylic/classic/5.jpg',
               '/images/puzzle1/acrylic/classic/6.jpg',
               '/images/puzzle1/acrylic/classic/7.jpg'
+            ],
+          },
+          {
+            name: 'Snowglobe',
+            images: ['/images/puzzle1/acrylic/snowglobe/1.jpg',
+              '/images/puzzle1/acrylic/snowglobe/2.jpg',
+              '/images/puzzle1/acrylic/snowglobe/3.jpg',
+              '/images/puzzle1/acrylic/snowglobe/4.jpg',
+              '/images/puzzle1/acrylic/snowglobe/5.jpg'
             ],
           },
           {
@@ -67,8 +71,23 @@ export const products: Product[] = [
           },
         ],
       },
+      {
+        name: 'MDF',
+        colors: [
+          {
+            name: 'Brown',
+            images: ['/images/puzzle1/MDF/classic/2.jpg',
+              '/images/puzzle1/MDF/classic/1.jpg',
+              '/images/puzzle1/MDF/classic/3.jpg',
+              '/images/puzzle1/MDF/classic/4.jpg',
+              '/images/puzzle1/MDF/classic/5.jpg',
+              '/images/puzzle1/MDF/classic/6.jpg',
+            ],
+          },
+        ],
+      },
     ],
-    additionalDetails: 'Handcrafted with precision and attention to detail.',
+    additionalDetails: 'Tight fitting, Precision cut, Premium materials.',
   },
   {
     id: '2',
@@ -107,7 +126,7 @@ export const products: Product[] = [
         ],
       },
     ],
-    additionalDetails: 'Handcrafted with precision and attention to detail.',
+    additionalDetails: 'Tight fitting, Precision cut, Premium materials.',
   },
   // Add more products as needed
 ];
